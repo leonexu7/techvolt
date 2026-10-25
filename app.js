@@ -1,5 +1,5 @@
 /**
- * TechVolt - Lógica de Negocio, Cotizador y Panel de Administración
+ * TechVolt - Lógica de Negocio, Cotizador Interactivo y Panel de Administración
  * Archivo: app.js
  * 
  * Implementación 100% Vanilla JavaScript pura sin frameworks ni dependencias externas.
@@ -39,6 +39,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Configurar escuchadores de eventos
   configurarEventosUI();
+  configurarHeroQuickActions();
+  configurarEventosFAQ();
   configurarTriggersAdmin();
   configurarEventosAdmin();
 
@@ -78,6 +80,25 @@ function formatearNumero(valor) {
     minimumFractionDigits: 0,
     maximumFractionDigits: 0
   });
+}
+
+/**
+ * Determina la clase pastel adecuada según la categoría del servicio
+ * @param {string} categoria 
+ * @returns {string}
+ */
+function obtenerClasePastelCategoria(categoria) {
+  const cat = (categoria || '').toLowerCase();
+  if (cat.includes('básica') || cat.includes('basica')) {
+    return 'pastel-azul';
+  }
+  if (cat.includes('iluminación') || cat.includes('iluminacion')) {
+    return 'pastel-ambar';
+  }
+  if (cat.includes('protección') || cat.includes('proteccion') || cat.includes('carga')) {
+    return 'pastel-salvia';
+  }
+  return 'pastel-azul';
 }
 
 /* ==========================================================================
@@ -123,7 +144,7 @@ function renderizarTextosEmpresa() {
   const btnProyectos = document.getElementById('btn-proyectos-especiales');
   if (btnProyectos) {
     const wsp = emp.whatsapp ? emp.whatsapp.replace(/\D/g, '') : '522219829074';
-    const msg = encodeURIComponent(`Hola ${emp.nombre}, requiero asesoría técnica para un proyecto eléctrico mayor o comercial.`);
+    const msg = encodeURIComponent(`Hola ${emp.nombre}, requiero asesoría técnica para un proyecto eléctrico mayor o comercial en Tehuacán.`);
     btnProyectos.href = `https://wa.me/${wsp}?text=${msg}`;
   }
 
@@ -145,7 +166,7 @@ function renderizarTextosEmpresa() {
 }
 
 /**
- * Renderiza la lista de servicios con sus controles de conteo
+ * Renderiza la lista de servicios con sus controles y estados visuales (CRO)
  */
 function renderizarCatalogoServicios() {
   const contenedor = document.getElementById('contenedor-servicios-catalogo');
@@ -160,14 +181,21 @@ function renderizarCatalogoServicios() {
 
   appData.servicios.forEach(s => {
     const cantidad = cantidadesServicios[s.id] || 0;
+    const clasePastel = obtenerClasePastelCategoria(s.categoria);
+    const estaSeleccionado = cantidad > 0;
 
     const card = document.createElement('div');
-    card.className = 'servicio-card';
+    card.className = `servicio-card ${estaSeleccionado ? 'seleccionado' : ''}`;
     card.dataset.id = s.id;
 
     card.innerHTML = `
       <div class="servicio-header">
-        <span class="servicio-categoria-tag">${s.categoria || 'Servicio'}</span>
+        <div class="servicio-top-tags">
+          <span class="servicio-categoria-tag ${clasePastel}">${s.categoria || 'Servicio'}</span>
+          <span class="servicio-agregado-badge ${estaSeleccionado ? '' : 'oculto'}">
+            <i data-lucide="check" class="icono-micro"></i> Agregado
+          </span>
+        </div>
         <h3 class="servicio-nombre">${s.nombre}</h3>
         <p class="servicio-descripcion">${s.descripcion}</p>
       </div>
@@ -230,7 +258,7 @@ function renderizarSintomasDiagnostico() {
 }
 
 /**
- * Renderiza o esconde la sección del portafolio según la longitud de trabajosRealizados
+ * Renderiza o esconde la sección del portafolio y el menú de navegación según trabajosRealizados
  */
 function renderizarPortafolio() {
   const seccion = document.getElementById('seccion-portafolio');
@@ -241,8 +269,8 @@ function renderizarPortafolio() {
 
   const trabajos = appData.trabajosRealizados;
 
+  // Si no hay trabajos cargados (length === 0), ocultar por completo
   if (!Array.isArray(trabajos) || trabajos.length === 0) {
-    // Si no hay trabajos cargados, ocultar completamente
     seccion.classList.add('oculto');
     navEnlace.classList.add('oculto');
     grid.innerHTML = '';
@@ -260,7 +288,7 @@ function renderizarPortafolio() {
 
     const imagenUrl = t.imagenUrl && t.imagenUrl.trim() !== '' 
       ? t.imagenUrl 
-      : 'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=600&q=80';
+      : 'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=800&q=80';
 
     card.innerHTML = `
       <div class="portafolio-imagen-contenedor">
@@ -328,7 +356,7 @@ function actualizarBarraPresupuesto() {
 
   if (conteo > 0) {
     barra.classList.remove('oculto');
-    txtContador.textContent = `${conteo} ${conteo === 1 ? 'ítem seleccionado' : 'ítems seleccionados'}`;
+    txtContador.textContent = `${conteo} ${conteo === 1 ? 'servicio seleccionado' : 'servicios seleccionados'}`;
     txtTotal.textContent = `$${formatearNumero(total)} MXN`;
   } else {
     barra.classList.add('oculto');
@@ -351,7 +379,7 @@ function enviarPresupuestoWhatsApp() {
 
   let lineas = [];
   lineas.push(`*SOLICITUD DE PRESUPUESTO - ${empresaNombre.toUpperCase()}*`);
-  lineas.push(`Hola, me gustaria agendar un servicio tecnico con los siguientes requerimientos:\n`);
+  lineas.push(`Hola, me gustaría agendar un servicio técnico con los siguientes requerimientos:\n`);
 
   // Desglose de Servicios
   let tieneServicios = false;
@@ -373,13 +401,13 @@ function enviarPresupuestoWhatsApp() {
     lineas.push('');
   }
 
-  // Desglose de Diagnostico
+  // Desglose de Diagnóstico
   if (sintomasSeleccionados.size > 0) {
-    lineas.push(`*FALLAS / SINTOMAS PARA REVISION TECNICA:*`);
+    lineas.push(`*FALLAS / SÍNTOMAS PARA REVISIÓN TÉCNICA:*`);
     sintomasSeleccionados.forEach(id => {
       const sintoma = appData.sintomasDiagnostico.find(d => d.id === id);
       if (sintoma) {
-        lineas.push(`- ${sintoma.sintoma} (Visita de diagnostico: $${formatearNumero(sintoma.costoRevision)} MXN)`);
+        lineas.push(`- ${sintoma.sintoma} (Visita de diagnóstico: $${formatearNumero(sintoma.costoRevision)} MXN)`);
       }
     });
     lineas.push('');
@@ -420,26 +448,11 @@ function configurarEventosUI() {
 
   if (btnTabServicios && btnTabDiagnostico && panelServicios && panelDiagnostico) {
     btnTabServicios.addEventListener('click', () => {
-      modoActivo = 'servicios';
-      btnTabServicios.classList.add('activo');
-      btnTabServicios.setAttribute('aria-selected', 'true');
-      btnTabDiagnostico.classList.remove('activo');
-      btnTabDiagnostico.setAttribute('aria-selected', 'false');
-
-      panelServicios.classList.remove('oculto');
-      panelDiagnostico.classList.add('oculto');
+      activarTabServicios();
     });
 
     btnTabDiagnostico.addEventListener('click', () => {
-      modoActivo = 'diagnostico';
-      btnTabDiagnostico.classList.add('activo');
-      btnTabDiagnostico.setAttribute('aria-selected', 'true');
-      btnTabServicios.classList.remove('activo');
-      btnTabServicios.setAttribute('aria-selected', 'false');
-
-      panelDiagnostico.classList.remove('oculto');
-      panelServicios.classList.add('oculto');
-      refrescarIconos();
+      activarTabDiagnostico();
     });
   }
 
@@ -485,7 +498,6 @@ function configurarEventosUI() {
       refrescarIconos();
     });
 
-    // Soporte para selección con teclado (Enter / Espacio)
     contenedorDiagnostico.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' || e.key === ' ') {
         const card = e.target.closest('.sintoma-card');
@@ -510,8 +522,48 @@ function configurarEventosUI() {
   });
 }
 
+function activarTabServicios() {
+  const btnTabServicios = document.getElementById('tab-btn-servicios');
+  const btnTabDiagnostico = document.getElementById('tab-btn-diagnostico');
+  const panelServicios = document.getElementById('panel-servicios');
+  const panelDiagnostico = document.getElementById('panel-diagnostico');
+
+  modoActivo = 'servicios';
+  if (btnTabServicios) {
+    btnTabServicios.classList.add('activo');
+    btnTabServicios.setAttribute('aria-selected', 'true');
+  }
+  if (btnTabDiagnostico) {
+    btnTabDiagnostico.classList.remove('activo');
+    btnTabDiagnostico.setAttribute('aria-selected', 'false');
+  }
+  if (panelServicios) panelServicios.classList.remove('oculto');
+  if (panelDiagnostico) panelDiagnostico.classList.add('oculto');
+}
+
+function activarTabDiagnostico() {
+  const btnTabServicios = document.getElementById('tab-btn-servicios');
+  const btnTabDiagnostico = document.getElementById('tab-btn-diagnostico');
+  const panelServicios = document.getElementById('panel-servicios');
+  const panelDiagnostico = document.getElementById('panel-diagnostico');
+
+  modoActivo = 'diagnostico';
+  if (btnTabDiagnostico) {
+    btnTabDiagnostico.classList.add('activo');
+    btnTabDiagnostico.setAttribute('aria-selected', 'true');
+  }
+  if (btnTabServicios) {
+    btnTabServicios.classList.remove('activo');
+    btnTabServicios.setAttribute('aria-selected', 'false');
+  }
+  if (panelDiagnostico) panelDiagnostico.classList.remove('oculto');
+  if (panelServicios) panelServicios.classList.add('oculto');
+  refrescarIconos();
+}
+
 /**
  * Actualiza el DOM individual de un servicio tras presionar +/-
+ * Cambia el estilo de la tarjeta a Verde Salvia suave cuando cantidad > 0
  * @param {string} id 
  */
 function actualizarCardServicio(id) {
@@ -526,10 +578,127 @@ function actualizarCardServicio(id) {
   if (btnRestar) {
     btnRestar.disabled = cantidad === 0;
   }
+
+  // Retroalimentación visual inmediata (CRO)
+  const badgeAgregado = card.querySelector('.servicio-agregado-badge');
+  if (cantidad > 0) {
+    card.classList.add('seleccionado');
+    if (badgeAgregado) badgeAgregado.classList.remove('oculto');
+  } else {
+    card.classList.remove('seleccionado');
+    if (badgeAgregado) badgeAgregado.classList.add('oculto');
+  }
+
+  refrescarIconos();
 }
 
 /* ==========================================================================
-   5. ACTIVACIÓN DEL COMANDO SECRETO DE ADMINISTRADOR (3 VÍAS)
+   5. WIDGET INTERACTIVO DE ACCIÓN RÁPIDA DEL HERO (CRO)
+   ========================================================================== */
+function configurarHeroQuickActions() {
+  const btnContactos = document.getElementById('btn-hero-contactos');
+  const btnLamparas = document.getElementById('btn-hero-lamparas');
+  const btnPastilla = document.getElementById('btn-hero-pastilla');
+  const btnOtros = document.getElementById('btn-hero-otros');
+
+  const scrollACotizador = (idElementoDestino) => {
+    const cotizador = document.getElementById('cotizador');
+    if (cotizador) {
+      cotizador.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    if (idElementoDestino) {
+      setTimeout(() => {
+        const elemento = document.querySelector(`.servicio-card[data-id="${idElementoDestino}"]`) || 
+                         document.querySelector(`.sintoma-card[data-id="${idElementoDestino}"]`);
+        if (elemento) {
+          elemento.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      }, 350);
+    }
+  };
+
+  if (btnContactos) {
+    btnContactos.addEventListener('click', () => {
+      activarTabServicios();
+      // Si aún no está seleccionado, agregar 1 automáticamente
+      if ((cantidadesServicios['s1'] || 0) === 0) {
+        cantidadesServicios['s1'] = 1;
+        actualizarCardServicio('s1');
+        actualizarBarraPresupuesto();
+      }
+      scrollACotizador('s1');
+    });
+  }
+
+  if (btnLamparas) {
+    btnLamparas.addEventListener('click', () => {
+      activarTabServicios();
+      if ((cantidadesServicios['s3'] || 0) === 0) {
+        cantidadesServicios['s3'] = 1;
+        actualizarCardServicio('s3');
+        actualizarBarraPresupuesto();
+      }
+      scrollACotizador('s3');
+    });
+  }
+
+  if (btnPastilla) {
+    btnPastilla.addEventListener('click', () => {
+      activarTabDiagnostico();
+      if (!sintomasSeleccionados.has('d1')) {
+        sintomasSeleccionados.add('d1');
+        renderizarSintomasDiagnostico();
+        actualizarBarraPresupuesto();
+        refrescarIconos();
+      }
+      scrollACotizador('d1');
+    });
+  }
+
+  if (btnOtros) {
+    btnOtros.addEventListener('click', () => {
+      activarTabServicios();
+      scrollACotizador();
+    });
+  }
+}
+
+/* ==========================================================================
+   6. ACORDEÓN INTERACTIVO DE PREGUNTAS FRECUENTES (FAQ)
+   ========================================================================== */
+function configurarEventosFAQ() {
+  const faqItems = document.querySelectorAll('.faq-item');
+
+  faqItems.forEach(item => {
+    const toggle = item.querySelector('.faq-toggle');
+    if (!toggle) return;
+
+    toggle.addEventListener('click', () => {
+      const estaActivo = item.classList.contains('activo');
+
+      // Opcional: Cerrar los demás para mantener limpieza visual
+      faqItems.forEach(otro => {
+        if (otro !== item) {
+          otro.classList.remove('activo');
+          const t = otro.querySelector('.faq-toggle');
+          if (t) t.setAttribute('aria-expanded', 'false');
+        }
+      });
+
+      if (estaActivo) {
+        item.classList.remove('activo');
+        toggle.setAttribute('aria-expanded', 'false');
+      } else {
+        item.classList.add('activo');
+        toggle.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+}
+
+/* ==========================================================================
+   7. ACTIVACIÓN DEL COMANDO SECRETO DE ADMINISTRADOR (3 VÍAS)
    ========================================================================== */
 function configurarTriggersAdmin() {
   // Vía 1 y Vía 2: Teclado (Secuencia "techvolt" y atajo Ctrl + Shift + E)
@@ -541,7 +710,7 @@ function configurarTriggersAdmin() {
       return;
     }
 
-    // Vía 1: Secuencia de letras "techvolt" (ignora inputs, textareas o edits)
+    // Vía 1: Secuencia de letras "techvolt" (ignora inputs o textareas)
     const activo = document.activeElement;
     const esInput = activo && (
       activo.tagName === 'INPUT' || 
@@ -588,7 +757,7 @@ function configurarTriggersAdmin() {
 }
 
 /* ==========================================================================
-   6. CONTROL DEL MODAL DE ADMINISTRACIÓN
+   8. CONTROL DEL MODAL DE ADMINISTRACIÓN
    ========================================================================== */
 function abrirModalAdmin() {
   const modal = document.getElementById('modal-admin');
@@ -600,7 +769,6 @@ function abrirModalAdmin() {
 
   if (!modal || !vistaLogin || !vistaPanel || !modalFooter) return;
 
-  // Clona los datos actuales a un objeto temporal editable
   adminTempData = JSON.parse(JSON.stringify(appData));
 
   // Reiniciar a Vista 1 (Login)
@@ -679,7 +847,7 @@ function configurarEventosAdmin() {
     btnLoginSubmit.addEventListener('click', procesarLogin);
   }
 
-  // Pestañas internas del panel de administración
+  // Pestañas internas del panel
   const subtabBtns = document.querySelectorAll('.admin-subtab-btn');
   subtabBtns.forEach(btn => {
     btn.addEventListener('click', () => {
@@ -738,7 +906,7 @@ function configurarEventosAdmin() {
       const nuevoTrabajo = {
         id: 't_' + Date.now(),
         titulo: titulo,
-        imagenUrl: imagenUrl || 'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=600&q=80',
+        imagenUrl: imagenUrl || 'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=800&q=80',
         descripcion: descripcion,
         fecha: new Date().toLocaleDateString('es-MX', { year: 'numeric', month: 'short' })
       };
@@ -758,7 +926,7 @@ function configurarEventosAdmin() {
     });
   }
 
-  // Acciones finales del footer del modal:
+  // Acciones finales:
   // 1. Guardar Cambios
   const btnGuardar = document.getElementById('btn-admin-guardar');
   if (btnGuardar) {
@@ -850,7 +1018,6 @@ function renderizarAdminServicios() {
       </div>
     `;
 
-    // Escuchar cambios directamente para sincronizar con adminTempData
     const inputNombre = item.querySelector('.adm-srv-nombre');
     const inputCategoria = item.querySelector('.adm-srv-categoria');
     const inputPrecio = item.querySelector('.adm-srv-precio');
@@ -930,7 +1097,6 @@ function renderizarAdminTrabajos() {
  * Recopila todos los inputs y persiste los cambios en LocalStorage y vista pública
  */
 function guardarCambiosAdmin() {
-  // Recopilar campos de datos generales
   const nombre = document.getElementById('admin-input-nombre')?.value.trim();
   const eslogan = document.getElementById('admin-input-eslogan')?.value.trim();
   const whatsapp = document.getElementById('admin-input-wsp')?.value.trim();
@@ -950,24 +1116,20 @@ function guardarCambiosAdmin() {
     notaMateriales: notaMateriales || 'Precios estimados de mano de obra.'
   };
 
-  // Guardar en LocalStorage mediante guardarDatos de datos.js
   const exito = typeof guardarDatos === 'function' ? guardarDatos(adminTempData) : false;
 
   if (exito) {
-    // Sincronizar estado activo de la aplicación
     appData = JSON.parse(JSON.stringify(adminTempData));
 
-    // Asegurar que las claves de cantidades existan para servicios nuevos
     appData.servicios.forEach(s => {
       if (cantidadesServicios[s.id] === undefined) {
         cantidadesServicios[s.id] = 0;
       }
     });
 
-    // Actualizar la interfaz pública en vivo de inmediato
+    // Actualiza la vista pública completa en vivo al instante (incluyendo portafolio)
     renderizarTodo();
 
-    // Cerrar modal
     cerrarModalAdmin();
 
     alert("¡Los cambios se guardaron exitosamente en el navegador!");
@@ -980,7 +1142,6 @@ function guardarCambiosAdmin() {
  * Genera el archivo datos.js actualizado y dispara la descarga con Blob
  */
 function descargarArchivoDatos() {
-  // Sincronizar datos generales antes de exportar
   const nombre = document.getElementById('admin-input-nombre')?.value.trim() || adminTempData.empresa.nombre;
   const eslogan = document.getElementById('admin-input-eslogan')?.value.trim() || adminTempData.empresa.eslogan;
   const whatsapp = document.getElementById('admin-input-wsp')?.value.trim() || adminTempData.empresa.whatsapp;

@@ -9,7 +9,7 @@
   <!-- Tipografía moderna e ingeniería limpia -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
 
   <!-- Estilos principales -->
   <link rel="stylesheet" href="styles.css">
@@ -42,7 +42,8 @@
           <span id="texto-cobertura">Tehuacán y zonas cercanas</span>
         </div>
 
-        <a href="#seccion-portafolio" id="nav-enlace-portafolio" class="nav-enlace">
+        <!-- Enlace oculto por defecto si trabajosRealizados está vacío -->
+        <a href="#seccion-portafolio" id="nav-enlace-portafolio" class="nav-enlace oculto">
           <i data-lucide="camera" class="icono-pequeno"></i>
           <span>Trabajos Realizados</span>
         </a>
@@ -58,12 +59,13 @@
 
   <main>
     <!-- =========================================================================
-         2. HERO DE CONFIANZA INMEDIATA CON FOTOGRAFÍA PROFESIONAL
+         2. HERO CON WIDGET INTERACTIVO DE ACCIÓN RÁPIDA (CRO & FIGURA-FONDO)
          ========================================================================= -->
     <section class="seccion-hero">
       <div class="contenedor hero-grid">
+        <!-- Columna Izquierda: Propuesta de valor clara y directa -->
         <div class="hero-texto-columna">
-          <div class="hero-insignia pastel-amarillo">
+          <div class="hero-insignia pastel-salvia">
             <i data-lucide="shield-check" class="icono-pequeno"></i>
             <span>Electricista Profesional Certificado - Tehuacán</span>
           </div>
@@ -73,21 +75,10 @@
           </h1>
 
           <p class="hero-subtitulo">
-            Calcula tu presupuesto estimado de mano de obra en 1 minuto y recíbelo al instante por WhatsApp para programar tu visita, con diagnóstico preciso y sin intermediarios.
+            Calcula tu presupuesto estimado de mano de obra en 1 minuto y recíbelo al instante por WhatsApp para programar tu visita, con diagnóstico preciso y trato directo.
           </p>
 
-          <div class="hero-cta-grupo">
-            <a href="#cotizador" class="btn btn-hero-cotizar">
-              <i data-lucide="calculator" class="icono-pequeno"></i>
-              <span>Calcular Presupuesto Ahora</span>
-            </a>
-            <div class="hero-garantia-pill pastel-verde">
-              <i data-lucide="check-circle" class="icono-pequeno"></i>
-              <span>Presupuesto sin compromiso previo</span>
-            </div>
-          </div>
-
-          <!-- Checklist de confianza en 3 tarjetas horizontales con acentos pastel -->
+          <!-- Checklist de confianza en tarjetas con fondo blanco y bordes definidos -->
           <div class="hero-checklist">
             <div class="tarjeta-confianza">
               <div class="tarjeta-icono pastel-azul">
@@ -100,17 +91,17 @@
             </div>
 
             <div class="tarjeta-confianza">
-              <div class="tarjeta-icono pastel-verde">
+              <div class="tarjeta-icono pastel-salvia">
                 <i data-lucide="shield-check"></i>
               </div>
               <div class="tarjeta-texto">
                 <h3>Trabajo seguro y ordenado</h3>
-                <p>Pruebas de tensión, apriete calibrado y peinado estético de cables.</p>
+                <p>Pruebas de tensión, apriete calibrado y peinado estético.</p>
               </div>
             </div>
 
             <div class="tarjeta-confianza">
-              <div class="tarjeta-icono pastel-amarillo">
+              <div class="tarjeta-icono pastel-ambar">
                 <i data-lucide="user-check"></i>
               </div>
               <div class="tarjeta-texto">
@@ -121,18 +112,68 @@
           </div>
         </div>
 
-        <!-- Tarjeta visual con fotografía de electricista profesional -->
+        <!-- Columna Derecha: Widget Interactivo de Acción Rápida -->
         <div class="hero-visual-columna">
-          <div class="hero-imagen-card">
-            <img 
-              src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=800&q=80" 
-              alt="Electricista profesional realizando mantenimiento en centro de carga" 
-              class="hero-img"
-              loading="eager"
-            >
-            <div class="hero-flotante-top pastel-azul">
-              <i data-lucide="award" class="icono-pequeno"></i>
-              <span>Norma Oficial Mexicana (NOM-001)</span>
+          <div class="hero-widget-card">
+            <div class="hero-widget-header">
+              <div class="hero-widget-badge pastel-azul">
+                <i data-lucide="sparkles" class="icono-pequeno"></i>
+                <span>Acción Inmediata</span>
+              </div>
+              <h2 class="hero-widget-titulo">¿Qué necesitas resolver hoy en casa?</h2>
+              <p class="hero-widget-sub">Toca una opción para armar tu presupuesto de inmediato:</p>
+            </div>
+
+            <div class="hero-widget-acciones">
+              <button type="button" class="btn-hero-accion" id="btn-hero-contactos" data-accion="contactos">
+                <div class="accion-icono-caja pastel-azul">
+                  <i data-lucide="toggle-right"></i>
+                </div>
+                <div class="accion-textos">
+                  <span class="accion-titulo">Instalar o cambiar contactos / apagadores</span>
+                  <span class="accion-precio">Desde $120 por pieza</span>
+                </div>
+                <i data-lucide="chevron-right" class="accion-flecha"></i>
+              </button>
+
+              <button type="button" class="btn-hero-accion" id="btn-hero-lamparas" data-accion="lamparas">
+                <div class="accion-icono-caja pastel-ambar">
+                  <i data-lucide="sun"></i>
+                </div>
+                <div class="accion-textos">
+                  <span class="accion-titulo">Colocar lámparas o ventilador</span>
+                  <span class="accion-precio">Desde $180 por equipo</span>
+                </div>
+                <i data-lucide="chevron-right" class="accion-flecha"></i>
+              </button>
+
+              <button type="button" class="btn-hero-accion" id="btn-hero-pastilla" data-accion="pastilla">
+                <div class="accion-icono-caja pastel-terracota">
+                  <i data-lucide="alert-triangle"></i>
+                </div>
+                <div class="accion-textos">
+                  <span class="accion-titulo">Se bota la pastilla / Corto circuito</span>
+                  <span class="accion-precio accion-urgente">Diagnóstico rápido en sitio</span>
+                </div>
+                <i data-lucide="chevron-right" class="accion-flecha"></i>
+              </button>
+
+              <button type="button" class="btn-hero-accion" id="btn-hero-otros" data-accion="otros">
+                <div class="accion-icono-caja pastel-salvia">
+                  <i data-lucide="list-plus"></i>
+                </div>
+                <div class="accion-textos">
+                  <span class="accion-titulo">Otro trabajo eléctrico</span>
+                  <span class="accion-precio">Ver catálogo completo</span>
+                </div>
+                <i data-lucide="chevron-right" class="accion-flecha"></i>
+              </button>
+            </div>
+
+            <!-- Franja pastel verde salvia con tiempo de respuesta promedio -->
+            <div class="hero-tiempo-respuesta pastel-salvia">
+              <i data-lucide="clock" class="icono-pequeno"></i>
+              <span>Tiempo de respuesta promedio en WhatsApp: <strong>Menos de 15 minutos</strong></span>
             </div>
           </div>
         </div>
@@ -140,7 +181,7 @@
     </section>
 
     <!-- =========================================================================
-         SECCIÓN: CÓMO TRABAJAMOS (3 PASOS CLAROS)
+         3. SECCIÓN: ¿CÓMO FUNCIONA? EN 3 PASOS CLAROS
          ========================================================================= -->
     <section class="seccion-proceso">
       <div class="contenedor">
@@ -154,49 +195,46 @@
 
         <div class="proceso-grid">
           <div class="proceso-card">
-            <div class="proceso-numero pastel-azul">01</div>
-            <div class="proceso-icono pastel-azul">
-              <i data-lucide="list-checks"></i>
+            <div class="proceso-numero pastel-azul">1</div>
+            <div class="proceso-contenido">
+              <h3 class="proceso-titulo">Armas tu lista en 1 minuto</h3>
+              <p class="proceso-desc">
+                Elige cuántos contactos, lámparas o revisiones necesitas viendo el costo de mano de obra al instante en pantalla.
+              </p>
             </div>
-            <h3 class="proceso-titulo">Arma tu Presupuesto</h3>
-            <p class="proceso-desc">
-              Selecciona los servicios que necesitas o indica la falla que observas en nuestro cotizador interactivo.
-            </p>
           </div>
 
           <div class="proceso-card">
-            <div class="proceso-numero pastel-amarillo">02</div>
-            <div class="proceso-icono pastel-amarillo">
-              <i data-lucide="message-circle"></i>
+            <div class="proceso-numero pastel-ambar">2</div>
+            <div class="proceso-contenido">
+              <h3 class="proceso-titulo">Envías tu ticket por WhatsApp</h3>
+              <p class="proceso-desc">
+                Con un solo clic recibo tu desglose exacto sin llenar formularios molestos ni registros obligatorios.
+              </p>
             </div>
-            <h3 class="proceso-titulo">Coordinamos por WhatsApp</h3>
-            <p class="proceso-desc">
-              Recibimos tu solicitud detallada, confirmamos la disponibilidad en tu colonia y agendamos tu cita.
-            </p>
           </div>
 
           <div class="proceso-card">
-            <div class="proceso-numero pastel-verde">03</div>
-            <div class="proceso-icono pastel-verde">
-              <i data-lucide="wrench"></i>
+            <div class="proceso-numero pastel-salvia">3</div>
+            <div class="proceso-contenido">
+              <h3 class="proceso-titulo">Acordamos hora y queda listo</h3>
+              <p class="proceso-desc">
+                Llego puntual a tu domicilio en Tehuacán, realizo el trabajo limpio y seguro, y pruebas todo antes de pagar.
+              </p>
             </div>
-            <h3 class="proceso-titulo">Visita y Trabajo Seguro</h3>
-            <p class="proceso-desc">
-              Acudimos puntualmente, realizamos la instalación o reparación con equipo calibrado y entregamos garantía.
-            </p>
           </div>
         </div>
       </div>
     </section>
 
     <!-- =========================================================================
-         3. SECCIÓN PRINCIPAL: COTIZADOR INTERACTIVO DE PRESUPUESTO
+         4. SECCIÓN PRINCIPAL: COTIZADOR INTERACTIVO DE PRESUPUESTO
          ========================================================================= -->
     <section id="cotizador" class="seccion-cotizador">
       <div class="contenedor cotizador-contenedor">
         
         <div class="seccion-encabezado">
-          <span class="subtitulo-etiqueta pastel-amarillo">Cotizador en Vivo</span>
+          <span class="subtitulo-etiqueta pastel-ambar">Cotizador en Vivo</span>
           <h2 class="seccion-titulo">Configura tu Presupuesto Estimado</h2>
           <p class="seccion-descripcion">
             Elige el tipo de atención que requieres y personaliza los detalles del servicio.
@@ -238,7 +276,7 @@
         <!-- Parámetros adicionales de la cotización -->
         <div class="cotizador-opciones-card">
           <!-- Nota de Materiales -->
-          <div class="nota-materiales-bloque pastel-amarillo">
+          <div class="nota-materiales-bloque pastel-ambar">
             <i data-lucide="file-text" class="icono-pequeno"></i>
             <p id="nota-materiales-texto">
               Precios estimados de mano de obra. El material lo puede proporcionar el cliente o se cotiza aparte según la marca que prefiera.
@@ -293,7 +331,7 @@
                 maxlength="120"
                 autocomplete="off"
               >
-              <span class="input-ayuda">Nos ayuda a confirmar la disponibilidad en tu zona.</span>
+              <span class="input-ayuda">Nos ayuda a confirmar la disponibilidad en tu zona de Tehuacán.</span>
             </div>
           </div>
         </div>
@@ -307,27 +345,27 @@
     <section class="seccion-marcas">
       <div class="contenedor">
         <div class="marcas-contenedor">
-          <span class="marcas-titulo">Instalamos marcas con certificación oficial:</span>
+          <span class="marcas-titulo">Instalamos y recomendamos materiales certificados bajo la NOM-001:</span>
           <div class="marcas-grid">
-            <span class="marca-badge pastel-gris">Schneider Electric</span>
-            <span class="marca-badge pastel-gris">Square D</span>
-            <span class="marca-badge pastel-gris">Bticino</span>
-            <span class="marca-badge pastel-gris">IUSA</span>
-            <span class="marca-badge pastel-gris">Leviton</span>
-            <span class="marca-badge pastel-gris">Argos</span>
-            <span class="marca-badge pastel-gris">Philips LED</span>
+            <span class="marca-badge pastel-azul">Schneider Electric</span>
+            <span class="marca-badge pastel-azul">Square D</span>
+            <span class="marca-badge pastel-salvia">Bticino</span>
+            <span class="marca-badge pastel-salvia">IUSA</span>
+            <span class="marca-badge pastel-ambar">Leviton</span>
+            <span class="marca-badge pastel-ambar">Argos</span>
+            <span class="marca-badge pastel-azul">Philips LED</span>
           </div>
         </div>
       </div>
     </section>
 
     <!-- =========================================================================
-         4. TARJETA DE COMERCIOS Y PROYECTOS ESPECIALES
+         TARJETA DE COMERCIOS Y PROYECTOS ESPECIALES
          ========================================================================= -->
     <section class="seccion-especial">
       <div class="contenedor">
         <div class="tarjeta-especial">
-          <div class="tarjeta-especial-icono pastel-amarillo">
+          <div class="tarjeta-especial-icono pastel-ambar">
             <i data-lucide="building-2"></i>
           </div>
           <div class="tarjeta-especial-cuerpo">
@@ -347,9 +385,9 @@
     </section>
 
     <!-- =========================================================================
-         5. SECCIÓN CONDICIONAL DE TRABAJOS REALIZADOS
+         SECCIÓN CONDICIONAL DE TRABAJOS REALIZADOS (Oculta si no hay elementos)
          ========================================================================= -->
-    <section id="seccion-portafolio" class="seccion-portafolio">
+    <section id="seccion-portafolio" class="seccion-portafolio oculto">
       <div class="contenedor">
         <div class="seccion-encabezado">
           <span class="subtitulo-etiqueta pastel-azul">Evidencia Gráfica Real</span>
@@ -371,8 +409,8 @@
     <section class="seccion-testimonios">
       <div class="contenedor">
         <div class="seccion-encabezado text-center">
-          <span class="subtitulo-etiqueta pastel-verde">Opiniones Verificadas</span>
-          <h2 class="seccion-titulo">Lo que dicen nuestros clientes</h2>
+          <span class="subtitulo-etiqueta pastel-salvia">Opiniones Verificadas</span>
+          <h2 class="seccion-titulo">Lo que dicen nuestros clientes en Tehuacán</h2>
           <p class="seccion-descripcion">
             Compromiso con la puntualidad, limpieza y solución técnica definitiva.
           </p>
@@ -392,7 +430,7 @@
             </p>
             <div class="testimonio-autor">
               <span class="testimonio-nombre">Roberto G.</span>
-              <span class="testimonio-zona pastel-gris">Col. Centro, Tehuacán</span>
+              <span class="testimonio-zona pastel-azul">Col. Centro, Tehuacán</span>
             </div>
           </div>
 
@@ -409,7 +447,7 @@
             </p>
             <div class="testimonio-autor">
               <span class="testimonio-nombre">Arq. Mariana V.</span>
-              <span class="testimonio-zona pastel-gris">Fracc. Jacarandas</span>
+              <span class="testimonio-zona pastel-salvia">Fracc. Jacarandas</span>
             </div>
           </div>
 
@@ -426,7 +464,7 @@
             </p>
             <div class="testimonio-autor">
               <span class="testimonio-nombre">Ing. Carlos M.</span>
-              <span class="testimonio-zona pastel-gris">San Lorenzo Teotipilco</span>
+              <span class="testimonio-zona pastel-ambar">San Lorenzo Teotipilco</span>
             </div>
           </div>
         </div>
@@ -434,57 +472,65 @@
     </section>
 
     <!-- =========================================================================
-         SECCIÓN: PREGUNTAS FRECUENTES (FAQ)
+         5. SECCIÓN DE PREGUNTAS FRECUENTES RÁPIDAS (ACORDEÓN INTERACTIVO)
          ========================================================================= -->
     <section class="seccion-faq">
       <div class="contenedor">
         <div class="seccion-encabezado text-center">
           <span class="subtitulo-etiqueta pastel-azul">Dudas Frecuentes</span>
-          <h2 class="seccion-titulo">Preguntas Frecuentes</h2>
+          <h2 class="seccion-titulo">Preguntas Frecuentes Antes de Contratar</h2>
           <p class="seccion-descripcion">
-            Respuestas claras a las consultas más habituales sobre nuestro servicio.
+            Respuestas claras y honestas para que tomes tu decisión con total tranquilidad.
           </p>
         </div>
 
-        <div class="faq-grid">
-          <div class="faq-card">
-            <h3 class="faq-pregunta">
-              <i data-lucide="help-circle" class="icono-pequeno"></i>
-              <span>¿El presupuesto incluye el material?</span>
-            </h3>
-            <p class="faq-respuesta">
-              Nuestros precios corresponden a la mano de obra profesional. El cliente puede proporcionar el material con base en nuestra lista técnica sugerida, o nosotros lo cotizamos y compramos con marcas certificadas.
-            </p>
+        <div class="faq-acordeon-contenedor">
+          <!-- Pregunta 1 -->
+          <div class="faq-item activo">
+            <button type="button" class="faq-toggle" aria-expanded="true">
+              <span class="faq-toggle-titulo">
+                <i data-lucide="help-circle" class="icono-pequeno"></i>
+                <span>¿El precio incluye el material?</span>
+              </span>
+              <i data-lucide="chevron-down" class="faq-icono-flecha"></i>
+            </button>
+            <div class="faq-panel">
+              <p>
+                Los precios de nuestro cotizador corresponden exclusivamente a la mano de obra profesional calificada. Como cliente tienes total libertad: puedes comprar el material tú mismo siguiendo la lista técnica que te proporcionamos, o si lo prefieres, nosotros lo cotizamos y adquirimos con marcas certificadas (Square D, Bticino, IUSA) presentándote el ticket de compra correspondiente.
+              </p>
+            </div>
           </div>
 
-          <div class="faq-card">
-            <h3 class="faq-pregunta">
-              <i data-lucide="clock" class="icono-pequeno"></i>
-              <span>¿Atienden emergencias el mismo día?</span>
-            </h3>
-            <p class="faq-respuesta">
-              Sí. Si seleccionas la opción "Urgente (Hoy mismo)" en el cotizador, priorizamos tu reporte para atender cortos circuitos, apagones parciales o fallas de alto riesgo.
-            </p>
+          <!-- Pregunta 2 -->
+          <div class="faq-item">
+            <button type="button" class="faq-toggle" aria-expanded="false">
+              <span class="faq-toggle-titulo">
+                <i data-lucide="search" class="icono-pequeno"></i>
+                <span>¿Qué pasa si no sé exactamente dónde está la falla?</span>
+              </span>
+              <i data-lucide="chevron-down" class="faq-icono-flecha"></i>
+            </button>
+            <div class="faq-panel">
+              <p>
+                ¡Es completamente normal! Para eso creamos la pestaña de "Diagnóstico". Seleccionas los síntomas que observas (como parpadeo de focos o que se bote la pastilla) y agendamos una visita técnica de revisión. Llevamos multímetro digital, detector de fugas y probador de fases para identificar la causa raíz antes de que gastes en componentes innecesarios.
+              </p>
+            </div>
           </div>
 
-          <div class="faq-card">
-            <h3 class="faq-pregunta">
-              <i data-lucide="map-pin" class="icono-pequeno"></i>
-              <span>¿Qué cobertura geográfica tienen?</span>
-            </h3>
-            <p class="faq-respuesta">
-              Atendemos todo Tehuacán (Centro, San Lorenzo, San Diego Chalma, San Pedro Acoquiaco, Fraccionamientos) y zonas conurbadas cercanas.
-            </p>
-          </div>
-
-          <div class="faq-card">
-            <h3 class="faq-pregunta">
-              <i data-lucide="shield-check" class="icono-pequeno"></i>
-              <span>¿Ofrecen garantía en sus trabajos?</span>
-            </h3>
-            <p class="faq-respuesta">
-              Totalmente. Todos nuestros servicios de instalación y reparación cuentan con respaldo directo sobre la mano de obra realizada y pruebas técnicas en sitio.
-            </p>
+          <!-- Pregunta 3 -->
+          <div class="faq-item">
+            <button type="button" class="faq-toggle" aria-expanded="false">
+              <span class="faq-toggle-titulo">
+                <i data-lucide="clock" class="icono-pequeno"></i>
+                <span>¿Atienden urgencias o en fin de semana?</span>
+              </span>
+              <i data-lucide="chevron-down" class="faq-icono-flecha"></i>
+            </button>
+            <div class="faq-panel">
+              <p>
+                Sí, contamos con disponibilidad flexible en Tehuacán y zonas cercanas. Si tienes un corto circuito o falta de energía en todo el inmueble, selecciona la opción "Urgente (Hoy mismo)" en el cotizador y priorizaremos tu solicitud para atenderla de inmediato. También atendemos instalaciones programadas los sábados y domingos sin recargos abusivos.
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -527,13 +573,13 @@
     <div class="footer-inferior">
       <div class="contenedor footer-copy-contenedor">
         <p>&copy; TechVolt. Soluciones eléctricas seguras en Tehuacán.</p>
-        <span class="footer-tagline">Ingeniería práctica y confiable</span>
+        <span class="footer-tagline">Ingeniería práctica, limpia y confiable</span>
       </div>
     </div>
   </footer>
 
   <!-- =========================================================================
-       6. BARRA FLOTANTE INFERIOR DE PRESUPUESTO (Sticky Bar)
+       BARRA FLOTANTE INFERIOR DE PRESUPUESTO (Sticky Bar)
        ========================================================================= -->
   <aside id="barra-presupuesto" class="barra-presupuesto-fija oculto" aria-live="polite">
     <div class="contenedor barra-presupuesto-interior">
@@ -558,7 +604,7 @@
   </aside>
 
   <!-- =========================================================================
-       7. MODAL SECRETO DE ADMINISTRACIÓN (Acceso tras 5 clics al logo o techvolt)
+       MODAL SECRETO DE ADMINISTRACIÓN (Acceso con contraseña)
        ========================================================================= -->
   <div id="modal-admin" class="modal-backdrop oculto" role="dialog" aria-modal="true" aria-labelledby="modal-admin-titulo">
     <div class="modal-dialog">
@@ -577,7 +623,7 @@
         <!-- Vista 1: Solicitud de Contraseña -->
         <div id="admin-vista-login" class="admin-vista">
           <div class="admin-login-caja">
-            <div class="admin-login-icono pastel-amarillo">
+            <div class="admin-login-icono pastel-ambar">
               <i data-lucide="lock"></i>
             </div>
             <h4>Acceso Restringido</h4>

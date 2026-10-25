@@ -101,31 +101,22 @@ const CONFIG_INICIAL = {
   ],
 
   /**
-   * Trabajos realizados (Proyectos reales en Tehuacán con fotografías de electricistas)
+   * Trabajos realizados (Galería de proyectos / portafolio).
+   * 
+   * Estructura esperada de cada elemento:
+   * {
+   *   id: "t1",
+   *   titulo: "Mantenimiento integral a centro de carga",
+   *   descripcion: "Balanceo de cargas y sustitución de térmicos obsoletos.",
+   *   imagenUrl: "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=800&q=80",
+   *   fecha: "2026-03-15"
+   * }
+   * 
+   * Si el array está vacío ([]), el renderizado condicional oculta por completo
+   * tanto el enlace de la cabecera como la sección visual en el frontend.
+   * Al agregar al menos 1 elemento en el panel de administración, se despliega automáticamente.
    */
-  trabajosRealizados: [
-    {
-      id: "t1",
-      titulo: "Sustitución y Peinado de Centro de Carga QOD-4",
-      descripcion: "Reemplazo de tablero obsoleto con bornes flameados, peinado de conductores y balanceo de fases residenciales.",
-      imagenUrl: "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=800&q=80",
-      fecha: "Marzo 2026 - Tehuacán"
-    },
-    {
-      id: "t2",
-      titulo: "Detección de Corto Circuito y Pruebas con Multímetro",
-      descripcion: "Localización de fuga de corriente en caja de registro empotrada, eliminación de falso contacto y prueba de aislamiento.",
-      imagenUrl: "https://images.unsplash.com/photo-1621905252507-b35492cc74b4?auto=format&fit=crop&w=800&q=80",
-      fecha: "Febrero 2026 - Col. Centro"
-    },
-    {
-      id: "t3",
-      titulo: "Instalación de Iluminación y Salidas Especiales",
-      descripcion: "Distribución de circuitos independientes para electrodomésticos de alta demanda e iluminación LED cálida.",
-      imagenUrl: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80",
-      fecha: "Enero 2026 - San Lorenzo"
-    }
-  ]
+  trabajosRealizados: []
 };
 
 /**
