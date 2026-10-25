@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="TechVolt - Servicio Eléctrico Residencial y Comercial en Tehuacán. Cotiza tu instalación o reparación eléctrica en 1 minuto con precios claros y atención directa.">
+  <title>TechVolt | Servicio Eléctrico Residencial y Comercial</title>
+
+  <!-- Tipografía moderna e ingeniería limpia -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+
+  <!-- Estilos principales -->
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- Iconos técnicos Lucide -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+  <!-- =========================================================================
+       1. HEADER FIJO
+       ========================================================================= -->
+  <header class="header-fijo">
+    <div class="contenedor header-contenido">
+      <!-- Logo interactivo (ID secreto para modo admin al dar 5 clics) -->
+      <div id="logo-secreto" class="logo-bloque" role="button" tabindex="0" title="TechVolt" aria-label="TechVolt Inicio">
+        <span class="logo-icono" aria-hidden="true">
+          <i data-lucide="zap"></i>
+        </span>
+        <div class="logo-textos">
+          <span class="logo-marca">TechVolt</span>
+          <span class="logo-slogan" id="header-eslogan">Servicio Eléctrico</span>
+        </div>
+      </div>
+
+      <!-- Indicador de Cobertura y Navegación Condicional -->
+      <nav class="header-nav">
+        <div class="cobertura-badge" id="badge-cobertura">
+          <i data-lucide="map-pin" class="icono-pequeno"></i>
+          <span id="texto-cobertura">Tehuacán y zonas cercanas</span>
+        </div>
+
+        <a href="#seccion-portafolio" id="nav-enlace-portafolio" class="nav-enlace">
+          <i data-lucide="camera" class="icono-pequeno"></i>
+          <span>Trabajos Realizados</span>
+        </a>
+
+        <!-- Botón Contacto Rápido WhatsApp -->
+        <a href="#" id="btn-contacto-header" class="btn btn-contacto-header" target="_blank" rel="noopener noreferrer">
+          <i data-lucide="phone" class="icono-pequeno"></i>
+          <span id="btn-header-texto">Contacto Directo</span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- =========================================================================
+         2. HERO DE CONFIANZA INMEDIATA CON FOTOGRAFÍA PROFESIONAL
+         ========================================================================= -->
+    <section class="seccion-hero">
+      <div class="contenedor hero-grid">
+        <div class="hero-texto-columna">
+          <div class="hero-insignia pastel-amarillo">
+            <i data-lucide="shield-check" class="icono-pequeno"></i>
+            <span>Electricista Profesional Certificado - Tehuacán</span>
+          </div>
+          
+          <h1 class="hero-titulo">
+            Instalaciones y Reparaciones Eléctricas Seguras para tu Hogar y Negocio
+          </h1>
+
+          <p class="hero-subtitulo">
+            Calcula tu presupuesto estimado de mano de obra en 1 minuto y recíbelo al instante por WhatsApp para programar tu visita, con diagnóstico preciso y sin intermediarios.
+          </p>
+
+          <div class="hero-cta-grupo">
+            <a href="#cotizador" class="btn btn-hero-cotizar">
+              <i data-lucide="calculator" class="icono-pequeno"></i>
+              <span>Calcular Presupuesto Ahora</span>
+            </a>
+            <div class="hero-garantia-pill pastel-verde">
+              <i data-lucide="check-circle" class="icono-pequeno"></i>
+              <span>Presupuesto sin compromiso previo</span>
+            </div>
+          </div>
+
+          <!-- Checklist de confianza en 3 tarjetas horizontales con acentos pastel -->
+          <div class="hero-checklist">
+            <div class="tarjeta-confianza">
+              <div class="tarjeta-icono pastel-azul">
+                <i data-lucide="calculator"></i>
+              </div>
+              <div class="tarjeta-texto">
+                <h3>Presupuesto transparente</h3>
+                <p>Costos claros de mano de obra antes de comenzar la reparación.</p>
+              </div>
+            </div>
+
+            <div class="tarjeta-confianza">
+              <div class="tarjeta-icono pastel-verde">
+                <i data-lucide="shield-check"></i>
+              </div>
+              <div class="tarjeta-texto">
+                <h3>Trabajo seguro y ordenado</h3>
+                <p>Pruebas de tensión, apriete calibrado y peinado estético de cables.</p>
+              </div>
+            </div>
+
+            <div class="tarjeta-confianza">
+              <div class="tarjeta-icono pastel-amarillo">
+                <i data-lucide="user-check"></i>
+              </div>
+              <div class="tarjeta-texto">
+                <h3>Atención directa</h3>
+                <p>Trato personal con el técnico responsable de tu instalación.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tarjeta visual con fotografía de electricista profesional -->
+        <div class="hero-visual-columna">
+          <div class="hero-imagen-card">
+            <img 
+              src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=800&q=80" 
+              alt="Electricista profesional realizando mantenimiento en centro de carga" 
+              class="hero-img"
+              loading="eager"
+            >
+            <div class="hero-flotante-top pastel-azul">
+              <i data-lucide="award" class="icono-pequeno"></i>
+              <span>Norma Oficial Mexicana (NOM-001)</span>
+            </div>
+            <div class="hero-flotante-bottom pastel-verde">
+              <div class="hero-flotante-icono">
+                <i data-lucide="shield"></i>
+              </div>
+              <div class="hero-flotante-textos">
+                <strong>Garantía por Escrito</strong>
+                <span>Mano de obra 100% verificada con multímetro</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         SECCIÓN: CÓMO TRABAJAMOS (3 PASOS CLAROS)
+         ========================================================================= -->
+    <section class="seccion-proceso">
+      <div class="contenedor">
+        <div class="seccion-encabezado text-center">
+          <span class="subtitulo-etiqueta pastel-azul">Proceso Sin Complicaciones</span>
+          <h2 class="seccion-titulo">¿Cómo funciona el servicio TechVolt?</h2>
+          <p class="seccion-descripcion">
+            Nos enfocamos en solucionar tu requerimiento con rapidez, claridad y total seriedad.
+          </p>
+        </div>
+
+        <div class="proceso-grid">
+          <div class="proceso-card">
+            <div class="proceso-numero pastel-azul">01</div>
+            <div class="proceso-icono pastel-azul">
+              <i data-lucide="list-checks"></i>
+            </div>
+            <h3 class="proceso-titulo">Arma tu Presupuesto</h3>
+            <p class="proceso-desc">
+              Selecciona los servicios que necesitas o indica la falla que observas en nuestro cotizador interactivo.
+            </p>
+          </div>
+
+          <div class="proceso-card">
+            <div class="proceso-numero pastel-amarillo">02</div>
+            <div class="proceso-icono pastel-amarillo">
+              <i data-lucide="message-circle"></i>
+            </div>
+            <h3 class="proceso-titulo">Coordinamos por WhatsApp</h3>
+            <p class="proceso-desc">
+              Recibimos tu solicitud detallada, confirmamos la disponibilidad en tu colonia y agendamos tu cita.
+            </p>
+          </div>
+
+          <div class="proceso-card">
+            <div class="proceso-numero pastel-verde">03</div>
+            <div class="proceso-icono pastel-verde">
+              <i data-lucide="wrench"></i>
+            </div>
+            <h3 class="proceso-titulo">Visita y Trabajo Seguro</h3>
+            <p class="proceso-desc">
+              Acudimos puntualmente, realizamos la instalación o reparación con equipo calibrado y entregamos garantía.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         3. SECCIÓN PRINCIPAL: COTIZADOR INTERACTIVO DE PRESUPUESTO
+         ========================================================================= -->
+    <section id="cotizador" class="seccion-cotizador">
+      <div class="contenedor cotizador-contenedor">
+        
+        <div class="seccion-encabezado">
+          <span class="subtitulo-etiqueta pastel-amarillo">Cotizador en Vivo</span>
+          <h2 class="seccion-titulo">Configura tu Presupuesto Estimado</h2>
+          <p class="seccion-descripcion">
+            Elige el tipo de atención que requieres y personaliza los detalles del servicio.
+          </p>
+        </div>
+
+        <!-- Selector de pestañas de modo -->
+        <div class="pestas-navegacion" role="tablist">
+          <button type="button" id="tab-btn-servicios" class="tab-btn activo" role="tab" aria-selected="true" aria-controls="panel-servicios">
+            <i data-lucide="list-checks" class="icono-pequeno"></i>
+            <span>Sé qué trabajo necesito (Lista de Precios)</span>
+          </button>
+          <button type="button" id="tab-btn-diagnostico" class="tab-btn" role="tab" aria-selected="false" aria-controls="panel-diagnostico">
+            <i data-lucide="alert-triangle" class="icono-pequeno"></i>
+            <span>Tengo una falla / No sé qué tiene (Diagnóstico)</span>
+          </button>
+        </div>
+
+        <!-- Pestaña A: Catálogo de Servicios con selectores de cantidad -->
+        <div id="panel-servicios" class="tab-panel activo" role="tabpanel">
+          <div id="contenedor-servicios-catalogo" class="servicios-grid">
+            <!-- Inyectado dinámicamente desde app.js -->
+          </div>
+        </div>
+
+        <!-- Pestaña B: Diagnóstico por Síntomas -->
+        <div id="panel-diagnostico" class="tab-panel oculto" role="tabpanel">
+          <div class="diagnostico-intro">
+            <div class="diagnostico-alerta pastel-azul">
+              <i data-lucide="info" class="icono-pequeno"></i>
+              <p>Selecciona las señales que observas en tu inmueble. La visita técnica incluye revisión con equipo de medición y detección de la causa raíz.</p>
+            </div>
+          </div>
+          <div id="contenedor-sintomas-diagnostico" class="sintomas-grid">
+            <!-- Inyectado dinámicamente desde app.js -->
+          </div>
+        </div>
+
+        <!-- Parámetros adicionales de la cotización -->
+        <div class="cotizador-opciones-card">
+          <!-- Nota de Materiales -->
+          <div class="nota-materiales-bloque pastel-amarillo">
+            <i data-lucide="file-text" class="icono-pequeno"></i>
+            <p id="nota-materiales-texto">
+              Precios estimados de mano de obra. El material lo puede proporcionar el cliente o se cotiza aparte según la marca que prefiera.
+            </p>
+          </div>
+
+          <div class="opciones-grid">
+            <!-- Selector de Urgencia / Horario -->
+            <div class="opcion-columna">
+              <label class="opcion-etiqueta">
+                <i data-lucide="clock" class="icono-pequeno"></i>
+                <span>¿Cuándo necesitas la atención?</span>
+              </label>
+              <div class="urgencia-selector" role="radiogroup" aria-label="Prioridad de atención">
+                <label class="urgencia-radio-card">
+                  <input type="radio" name="urgencia" value="Urgente (Hoy mismo)">
+                  <span class="urgencia-card-contenido">
+                    <span class="urgencia-titulo">Urgente</span>
+                    <span class="urgencia-sub">Hoy mismo</span>
+                  </span>
+                </label>
+
+                <label class="urgencia-radio-card">
+                  <input type="radio" name="urgencia" value="Para esta semana" checked>
+                  <span class="urgencia-card-contenido">
+                    <span class="urgencia-titulo">Esta semana</span>
+                    <span class="urgencia-sub">Programado</span>
+                  </span>
+                </label>
+
+                <label class="urgencia-radio-card">
+                  <input type="radio" name="urgencia" value="Fin de semana">
+                  <span class="urgencia-card-contenido">
+                    <span class="urgencia-titulo">Fin de semana</span>
+                    <span class="urgencia-sub">Sábado o Domingo</span>
+                  </span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Campo de Ubicación / Referencia -->
+            <div class="opcion-columna">
+              <label for="input-colonia" class="opcion-etiqueta">
+                <i data-lucide="map" class="icono-pequeno"></i>
+                <span>Colonia o referencia breve (opcional):</span>
+              </label>
+              <input 
+                type="text" 
+                id="input-colonia" 
+                class="input-control" 
+                placeholder="Ej. Col. Zaragoza, cerca de Bodega Aurrerá"
+                maxlength="120"
+                autocomplete="off"
+              >
+              <span class="input-ayuda">Nos ayuda a confirmar la disponibilidad en tu zona.</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         SECCIÓN: MARCAS Y MATERIALES COMPATIBLES
+         ========================================================================= -->
+    <section class="seccion-marcas">
+      <div class="contenedor">
+        <div class="marcas-contenedor">
+          <span class="marcas-titulo">Instalamos marcas con certificación oficial:</span>
+          <div class="marcas-grid">
+            <span class="marca-badge pastel-gris">Schneider Electric</span>
+            <span class="marca-badge pastel-gris">Square D</span>
+            <span class="marca-badge pastel-gris">Bticino</span>
+            <span class="marca-badge pastel-gris">IUSA</span>
+            <span class="marca-badge pastel-gris">Leviton</span>
+            <span class="marca-badge pastel-gris">Argos</span>
+            <span class="marca-badge pastel-gris">Philips LED</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         4. TARJETA DE COMERCIOS Y PROYECTOS ESPECIALES
+         ========================================================================= -->
+    <section class="seccion-especial">
+      <div class="contenedor">
+        <div class="tarjeta-especial">
+          <div class="tarjeta-especial-icono pastel-amarillo">
+            <i data-lucide="building-2"></i>
+          </div>
+          <div class="tarjeta-especial-cuerpo">
+            <h3 class="tarjeta-especial-titulo">Comercios, Talleres y Proyectos Desde Cero</h3>
+            <p class="tarjeta-especial-descripcion">
+              ¿Tienes un local comercial, bodega, taller o requieres una instalación eléctrica completa desde acometida? Solicita un levantamiento técnico personalizado en sitio.
+            </p>
+          </div>
+          <div class="tarjeta-especial-accion">
+            <a href="#" id="btn-proyectos-especiales" class="btn btn-especial" target="_blank" rel="noopener noreferrer">
+              <i data-lucide="message-square" class="icono-pequeno"></i>
+              <span>Cotizar Proyecto Mayor</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         5. SECCIÓN CONDICIONAL DE TRABAJOS REALIZADOS
+         ========================================================================= -->
+    <section id="seccion-portafolio" class="seccion-portafolio">
+      <div class="contenedor">
+        <div class="seccion-encabezado">
+          <span class="subtitulo-etiqueta pastel-azul">Evidencia Gráfica Real</span>
+          <h2 class="seccion-titulo">Trabajos y Reparaciones Realizadas</h2>
+          <p class="seccion-descripcion">
+            Calidad visible, orden en canalizaciones y cumplimiento de códigos de seguridad en Tehuacán.
+          </p>
+        </div>
+
+        <div id="grid-portafolio" class="portafolio-grid">
+          <!-- Inyectado dinámicamente desde app.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         SECCIÓN: OPINIONES Y RESEÑAS DE CLIENTES
+         ========================================================================= -->
+    <section class="seccion-testimonios">
+      <div class="contenedor">
+        <div class="seccion-encabezado text-center">
+          <span class="subtitulo-etiqueta pastel-verde">Opiniones Verificadas</span>
+          <h2 class="seccion-titulo">Lo que dicen nuestros clientes</h2>
+          <p class="seccion-descripcion">
+            Compromiso con la puntualidad, limpieza y solución técnica definitiva.
+          </p>
+        </div>
+
+        <div class="testimonios-grid">
+          <div class="testimonio-card">
+            <div class="testimonio-estrellas">
+              <i data-lucide="star" class="estrella-icono"></i>
+              <i data-lucide="star" class="estrella-icono"></i>
+              <i data-lucide="star" class="estrella-icono"></i>
+              <i data-lucide="star" class="estrella-icono"></i>
+              <i data-lucide="star" class="estrella-icono"></i>
+            </div>
+            <p class="testimonio-texto">
+              "Excelente trabajo. Reemplazaron el centro de carga que se sobrecalentaba por la tarde. Quedó todo peinado y rotulado perfectamente. Muy profesional."
+            </p>
+            <div class="testimonio-autor">
+              <span class="testimonio-nombre">Roberto G.</span>
+              <span class="testimonio-zona pastel-gris">Col. Centro, Tehuacán</span>
+            </div>
+          </div>
+
+          <div class="testimonio-card">
+            <div class="testimonio-estrellas">
+              <i data-lucide="star" class="estrella-icono"></i>
+              <i data-lucide="star" class="estrella-icono"></i>
+              <i data-lucide="star" class="estrella-icono"></i>
+              <i data-lucide="star" class="estrella-icono"></i>
+              <i data-lucide="star" class="estrella-icono"></i>
+            </div>
+            <p class="testimonio-texto">
+              "Teníamos un corto circuito que botaba la pastilla principal y dos electricistas no daban con la falla. En TechVolt lo detectaron en 30 minutos con multímetro."
+            </p>
+            <div class="testimonio-autor">
+              <span class="testimonio-nombre">Arq. Mariana V.</span>
+              <span class="testimonio-zona pastel-gris">Fracc. Jacarandas</span>
+            </div>
+          </div>
+
+          <div class="testimonio-card">
+            <div class="testimonio-estrellas">
+              <i data-lucide="star" class="estrella-icono"></i>
+              <i data-lucide="star" class="estrella-icono"></i>
+              <i data-lucide="star" class="estrella-icono"></i>
+              <i data-lucide="star" class="estrella-icono"></i>
+              <i data-lucide="star" class="estrella-icono"></i>
+            </div>
+            <p class="testimonio-texto">
+              "Lo que más me gustó es que supe el costo antes de que iniciaran. Sin sorpresas al final y dejaron el área completamente limpia."
+            </p>
+            <div class="testimonio-autor">
+              <span class="testimonio-nombre">Ing. Carlos M.</span>
+              <span class="testimonio-zona pastel-gris">San Lorenzo Teotipilco</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         SECCIÓN: PREGUNTAS FRECUENTES (FAQ)
+         ========================================================================= -->
+    <section class="seccion-faq">
+      <div class="contenedor">
+        <div class="seccion-encabezado text-center">
+          <span class="subtitulo-etiqueta pastel-azul">Dudas Frecuentes</span>
+          <h2 class="seccion-titulo">Preguntas Frecuentes</h2>
+          <p class="seccion-descripcion">
+            Respuestas claras a las consultas más habituales sobre nuestro servicio.
+          </p>
+        </div>
+
+        <div class="faq-grid">
+          <div class="faq-card">
+            <h3 class="faq-pregunta">
+              <i data-lucide="help-circle" class="icono-pequeno"></i>
+              <span>¿El presupuesto incluye el material?</span>
+            </h3>
+            <p class="faq-respuesta">
+              Nuestros precios corresponden a la mano de obra profesional. El cliente puede proporcionar el material con base en nuestra lista técnica sugerida, o nosotros lo cotizamos y compramos con marcas certificadas.
+            </p>
+          </div>
+
+          <div class="faq-card">
+            <h3 class="faq-pregunta">
+              <i data-lucide="clock" class="icono-pequeno"></i>
+              <span>¿Atienden emergencias el mismo día?</span>
+            </h3>
+            <p class="faq-respuesta">
+              Sí. Si seleccionas la opción "Urgente (Hoy mismo)" en el cotizador, priorizamos tu reporte para atender cortos circuitos, apagones parciales o fallas de alto riesgo.
+            </p>
+          </div>
+
+          <div class="faq-card">
+            <h3 class="faq-pregunta">
+              <i data-lucide="map-pin" class="icono-pequeno"></i>
+              <span>¿Qué cobertura geográfica tienen?</span>
+            </h3>
+            <p class="faq-respuesta">
+              Atendemos todo Tehuacán (Centro, San Lorenzo, San Diego Chalma, San Pedro Acoquiaco, Fraccionamientos) y zonas conurbadas cercanas.
+            </p>
+          </div>
+
+          <div class="faq-card">
+            <h3 class="faq-pregunta">
+              <i data-lucide="shield-check" class="icono-pequeno"></i>
+              <span>¿Ofrecen garantía en sus trabajos?</span>
+            </h3>
+            <p class="faq-respuesta">
+              Totalmente. Todos nuestros servicios de instalación y reparación cuentan con respaldo directo sobre la mano de obra realizada y pruebas técnicas en sitio.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =========================================================================
+       FOOTER INFORMATIVO
+       ========================================================================= -->
+  <footer class="footer-principal">
+    <div class="contenedor footer-contenido">
+      <div class="footer-bloque">
+        <div class="logo-bloque footer-logo">
+          <span class="logo-icono"><i data-lucide="zap"></i></span>
+          <span class="logo-marca">TechVolt</span>
+        </div>
+        <p class="footer-texto" id="footer-eslogan-texto">Servicio Eléctrico Residencial y Comercial</p>
+        <p class="footer-subtexto" id="footer-cobertura-texto">Zona de Cobertura: Tehuacán y zonas cercanas</p>
+      </div>
+
+      <div class="footer-bloque">
+        <h4 class="footer-titulo">Garantía de Servicio</h4>
+        <ul class="footer-lista">
+          <li><i data-lucide="check" class="icono-micro"></i> Pruebas con multímetro y detector de tensión</li>
+          <li><i data-lucide="check" class="icono-micro"></i> Aislamiento térmico y peinado seguro</li>
+          <li><i data-lucide="check" class="icono-micro"></i> Asesoría honesta en materiales</li>
+        </ul>
+      </div>
+
+      <div class="footer-bloque">
+        <h4 class="footer-titulo">Atención Inmediata</h4>
+        <p class="footer-texto">Contáctanos vía WhatsApp para coordinar tu cita.</p>
+        <a href="#" id="footer-btn-whatsapp" class="btn btn-footer-wsp" target="_blank" rel="noopener noreferrer">
+          <i data-lucide="phone-call" class="icono-pequeno"></i>
+          <span id="footer-numero-visible">221 982 9074</span>
+        </a>
+      </div>
+    </div>
+    <div class="footer-inferior">
+      <div class="contenedor footer-copy-contenedor">
+        <p>&copy; TechVolt. Soluciones eléctricas seguras en Tehuacán.</p>
+        <span class="footer-tagline">Ingeniería práctica y confiable</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- =========================================================================
+       6. BARRA FLOTANTE INFERIOR DE PRESUPUESTO (Sticky Bar)
+       ========================================================================= -->
+  <aside id="barra-presupuesto" class="barra-presupuesto-fija oculto" aria-live="polite">
+    <div class="contenedor barra-presupuesto-interior">
+      <div class="barra-info-bloque">
+        <div class="barra-contador">
+          <i data-lucide="shopping-bag" class="icono-pequeno"></i>
+          <span id="resumen-contador-items">0 servicios seleccionados</span>
+        </div>
+        <div class="barra-precio-total">
+          <span class="barra-etiqueta-total">Total Estimado Mano de Obra:</span>
+          <span id="resumen-precio-total" class="barra-monto">$0 MXN</span>
+        </div>
+      </div>
+
+      <div class="barra-accion-bloque">
+        <button type="button" id="btn-enviar-whatsapp" class="btn btn-whatsapp-accion">
+          <i data-lucide="send" class="icono-pequeno"></i>
+          <span>Enviar Presupuesto por WhatsApp</span>
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- =========================================================================
+       7. MODAL SECRETO DE ADMINISTRACIÓN (Acceso tras 5 clics al logo o techvolt)
+       ========================================================================= -->
+  <div id="modal-admin" class="modal-backdrop oculto" role="dialog" aria-modal="true" aria-labelledby="modal-admin-titulo">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <div class="modal-header-titulo">
+          <i data-lucide="shield" class="icono-pequeno"></i>
+          <h3 id="modal-admin-titulo">Panel de Control TechVolt</h3>
+        </div>
+        <button type="button" id="btn-cerrar-admin" class="btn-cerrar-modal" aria-label="Cerrar ventana">
+          <i data-lucide="x"></i>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        
+        <!-- Vista 1: Solicitud de Contraseña -->
+        <div id="admin-vista-login" class="admin-vista">
+          <div class="admin-login-caja">
+            <div class="admin-login-icono pastel-amarillo">
+              <i data-lucide="lock"></i>
+            </div>
+            <h4>Acceso Restringido</h4>
+            <p>Ingresa la contraseña de administración para editar precios y servicios.</p>
+            
+            <form id="form-admin-login" class="admin-login-form" onsubmit="return false;">
+              <div class="form-grupo">
+                <input 
+                  type="password" 
+                  id="admin-pass-input" 
+                  class="input-control text-center" 
+                  placeholder="Contraseña de acceso" 
+                  autocomplete="current-password"
+                  required
+                >
+              </div>
+              <div id="admin-login-error" class="alerta-error oculto">
+                <i data-lucide="alert-circle" class="icono-pequeno"></i>
+                <span id="admin-login-error-texto">Contraseña incorrecta</span>
+              </div>
+              <button type="submit" id="btn-admin-login-submit" class="btn btn-primary btn-block">
+                <span>Ingresar al Panel</span>
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <!-- Vista 2: Panel de Edición Desbloqueado -->
+        <div id="admin-vista-panel" class="admin-vista oculto">
+          
+          <div class="admin-tabs-nav">
+            <button type="button" class="admin-subtab-btn activo" data-target="admin-tab-general">
+              <i data-lucide="sliders" class="icono-pequeno"></i>
+              <span>Datos Generales</span>
+            </button>
+            <button type="button" class="admin-subtab-btn" data-target="admin-tab-servicios">
+              <i data-lucide="wrench" class="icono-pequeno"></i>
+              <span>Servicios y Precios</span>
+            </button>
+            <button type="button" class="admin-subtab-btn" data-target="admin-tab-galeria">
+              <i data-lucide="image" class="icono-pequeno"></i>
+              <span>Trabajos Realizados</span>
+            </button>
+          </div>
+
+          <!-- Sub-pestaña 1: Configuración General -->
+          <div id="admin-tab-general" class="admin-tab-contenido activo">
+            <div class="formulario-admin-seccion">
+              <h5 class="admin-seccion-titulo">Información Comercial y Contacto</h5>
+              
+              <div class="admin-form-grid">
+                <div class="form-grupo">
+                  <label for="admin-input-nombre">Nombre de la Empresa:</label>
+                  <input type="text" id="admin-input-nombre" class="input-control">
+                </div>
+
+                <div class="form-grupo">
+                  <label for="admin-input-eslogan">Eslogan:</label>
+                  <input type="text" id="admin-input-eslogan" class="input-control">
+                </div>
+
+                <div class="form-grupo">
+                  <label for="admin-input-wsp">Número WhatsApp (con código de país, ej. 522219829074):</label>
+                  <input type="text" id="admin-input-wsp" class="input-control">
+                </div>
+
+                <div class="form-grupo">
+                  <label for="admin-input-wsp-visible">WhatsApp Visible (formato de lectura, ej. 221 982 9074):</label>
+                  <input type="text" id="admin-input-wsp-visible" class="input-control">
+                </div>
+
+                <div class="form-grupo">
+                  <label for="admin-input-cobertura">Zona de Cobertura:</label>
+                  <input type="text" id="admin-input-cobertura" class="input-control">
+                </div>
+
+                <div class="form-grupo">
+                  <label for="admin-input-password">Nueva Contraseña de Administración:</label>
+                  <input type="text" id="admin-input-password" class="input-control">
+                </div>
+              </div>
+
+              <div class="form-grupo">
+                <label for="admin-input-nota-materiales">Nota sobre Materiales y Mano de Obra:</label>
+                <textarea id="admin-input-nota-materiales" class="input-control textarea-control" rows="3"></textarea>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sub-pestaña 2: Edición de Servicios -->
+          <div id="admin-tab-servicios" class="admin-tab-contenido oculto">
+            <div class="admin-acciones-barra">
+              <h5 class="admin-seccion-titulo">Catálogo de Servicios y Mano de Obra</h5>
+              <button type="button" id="btn-admin-agregar-servicio" class="btn btn-sm btn-outline">
+                <i data-lucide="plus" class="icono-pequeno"></i>
+                <span>Nuevo Servicio</span>
+              </button>
+            </div>
+
+            <div id="admin-lista-servicios-contenedor" class="admin-servicios-lista">
+              <!-- Filas de edición generadas dinámicamente -->
+            </div>
+          </div>
+
+          <!-- Sub-pestaña 3: Gestor de Trabajos Realizados -->
+          <div id="admin-tab-galeria" class="admin-tab-contenido oculto">
+            <h5 class="admin-seccion-titulo">Agregar Nuevo Proyecto a la Galería</h5>
+            <div class="admin-form-nuevo-trabajo">
+              <div class="admin-form-grid">
+                <div class="form-grupo">
+                  <label for="nuevo-trabajo-titulo">Título del Trabajo:</label>
+                  <input type="text" id="nuevo-trabajo-titulo" class="input-control" placeholder="Ej. Instalación de Centro de Carga">
+                </div>
+                <div class="form-grupo">
+                  <label for="nuevo-trabajo-imagen">URL de la Imagen / Fotografía:</label>
+                  <input type="url" id="nuevo-trabajo-imagen" class="input-control" placeholder="https://ejemplo.com/foto.jpg">
+                </div>
+                <div class="form-grupo span-2">
+                  <label for="nuevo-trabajo-descripcion">Descripción breve de lo realizado:</label>
+                  <input type="text" id="nuevo-trabajo-descripcion" class="input-control" placeholder="Ej. Cambio de pastillas termomagnéticas y balanceo de fases.">
+                </div>
+              </div>
+              <button type="button" id="btn-admin-guardar-trabajo" class="btn btn-sm btn-primary">
+                <i data-lucide="plus-circle" class="icono-pequeno"></i>
+                <span>Agregar a la Galería</span>
+              </button>
+            </div>
+
+            <h5 class="admin-seccion-titulo mt-4">Proyectos Publicados Actualmente</h5>
+            <div id="admin-lista-trabajos-contenedor" class="admin-trabajos-lista">
+              <!-- Elementos de galería generados dinámicamente con opción de eliminar -->
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Barra de acciones inferiores del modal -->
+      <div id="admin-modal-footer" class="modal-footer oculto">
+        <div class="modal-footer-acciones">
+          <button type="button" id="btn-admin-restaurar" class="btn btn-sm btn-peligro" title="Restaura la configuración a valores de fábrica iniciales">
+            <i data-lucide="rotate-ccw" class="icono-pequeno"></i>
+            <span>Restaurar Fábrica</span>
+          </button>
+          
+          <div class="modal-footer-derecha">
+            <button type="button" id="btn-admin-descargar" class="btn btn-sm btn-secundario" title="Descarga el archivo datos.js actualizado">
+              <i data-lucide="download" class="icono-pequeno"></i>
+              <span>Descargar datos.js</span>
+            </button>
+            <button type="button" id="btn-admin-guardar" class="btn btn-sm btn-guardar">
+              <i data-lucide="save" class="icono-pequeno"></i>
+              <span>Guardar Cambios</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Scripts del Sistema -->
+  <script src="datos.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
